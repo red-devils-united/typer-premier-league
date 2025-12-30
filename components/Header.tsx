@@ -1,27 +1,30 @@
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 export default function Header() {
   const router = useRouter();
-  const active = (path: string) => (router.pathname === path ? "active" : "");
+  const isActive = (path: string) => router.pathname === path;
 
   return (
-    <header className="header">
-      <div className="headerInner">
+    <header className="topbar">
+      <div className="topbarInner">
         <Link href="/" className="brand">
-          <div className="logo" aria-hidden="true">⚽</div>
-          <div className="brandText">
-            <div className="brandTitle">Typer Premier League</div>
-            <div className="brandSub">Predict • Points • Leaderboard</div>
-          </div>
+          <span className="logoWrap">
+            <Image src="/logo.png" alt="Typer Premier League" width={34} height={34} />
+          </span>
+          <span className="brandText">
+            <span className="brandTitle">Typer Premier League</span>
+            <span className="brandSubtitle">Predict • Points • Leaderboard</span>
+          </span>
         </Link>
 
         <nav className="nav">
-          <Link className={active("/")} href="/">Home</Link>
-          <Link className={active("/typowanie")} href="/typowanie">Typowanie</Link>
-          <Link className={active("/ranking")} href="/ranking">Ranking</Link>
-          <Link className={active("/logowanie")} href="/logowanie">Logowanie</Link>
-          <Link className={active("/rejestracja")} href="/rejestracja">Rejestracja</Link>
+          <Link className={isActive("/") ? "active" : ""} href="/">Home</Link>
+          <Link className={isActive("/typowanie") ? "active" : ""} href="/typowanie">Typowanie</Link>
+          <Link className={isActive("/ranking") ? "active" : ""} href="/ranking">Ranking</Link>
+          <Link className={isActive("/logowanie") ? "active" : ""} href="/logowanie">Logowanie</Link>
+          <Link className={isActive("/rejestracja") ? "active" : ""} href="/rejestracja">Rejestracja</Link>
         </nav>
       </div>
     </header>
