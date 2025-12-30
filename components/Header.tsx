@@ -15,7 +15,7 @@ export default function Header() {
           </span>
           <span className="brandText">
             <span className="brandTitle">Typer Premier League</span>
-            <span className="brandSubtitle">Predict • Points • Leaderboard</span>
+            <span className="brandSubtitle">Typyj • Sprawdzaj • Wygrywaj</span>
           </span>
         </Link>
 
