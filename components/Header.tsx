@@ -1,30 +1,48 @@
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/router";
 
 export default function Header() {
   const router = useRouter();
-  const isActive = (path: string) => router.pathname === path;
+
+  const active = (path: string) => {
+    return router.pathname === path ? "navLink active" : "navLink";
+  };
 
   return (
-    <header className="topbar">
-      <div className="topbarInner">
-        <Link href="/" className="brand">
-          <span className="logoWrap">
-            <Image src="/logo.png" alt="Typer Premier League" width={34} height={34} />
-          </span>
-          <span className="brandText">
-            <span className="brandTitle">Typer Premier League</span>
-            <span className="brandSubtitle">Analizuj • Typuj • Wygrywaj</span>
-          </span>
-        </Link>
+    <header className="header">
+      <div className="container headerInner">
+        {/* LEWA STRONA: logo + nazwa + slogan */}
+        <div className="brandWrap">
+          <div className="logoBox" aria-label="Logo">
+            {/* jeśli masz logo w /public/logo.png to możesz podmienić na:
+                <img src="/logo.png" alt="Logo" className="logoImg" />
+              */}
+            <span className="logoBall">⚽</span>
+          </div>
 
+          <div className="brandTextWrap">
+            <div className="brandTitle">Typer Premier League</div>
+            <div className="brandTagline">Analizuj • Typuj • Wygrywaj</div>
+          </div>
+        </div>
+
+        {/* PRAWA STRONA: menu */}
         <nav className="nav">
-          <Link className={isActive("/") ? "active" : ""} href="/">Home</Link>
-          <Link className={isActive("/typowanie") ? "active" : ""} href="/typowanie">Typowanie</Link>
-          <Link className={isActive("/ranking") ? "active" : ""} href="/ranking">Ranking</Link>
-          <Link className={isActive("/logowanie") ? "active" : ""} href="/logowanie">Logowanie</Link>
-          <Link className={isActive("/rejestracja") ? "active" : ""} href="/rejestracja">Rejestracja</Link>
+          <Link href="/" className={active("/")}>
+            Home
+          </Link>
+          <Link href="/typowanie" className={active("/typowanie")}>
+            Typowanie
+          </Link>
+          <Link href="/ranking" className={active("/ranking")}>
+            Ranking
+          </Link>
+          <Link href="/logowanie" className={active("/logowanie")}>
+            Logowanie
+          </Link>
+          <Link href="/rejestracja" className={active("/rejestracja")}>
+            Rejestracja
+          </Link>
         </nav>
       </div>
     </header>
